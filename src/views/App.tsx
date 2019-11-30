@@ -1,30 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import "../assets/css/app-reset.css"
+import { BrowserRouter as Router, Link, Route } from "react-router-dom"
+import List from "./list/list"
+import 'antd/dist/antd.css'
 
 
-import List from "./list"
 
-function App(props: any) {
-  useEffect(() => {
-    console.log(123)
-  }, [props.userID, props.departmentID])
+import Header from "../component/header/header"
 
-  const [name, setName] = useState("tuanjie")
-  const [age, setAge] = useState(20)
-  const [count, setCount] = useState(0)
-
-
+function App() {
   return (
-    <div>
-    </div>
+    <Router>
+      <Header />
+      <Route path="/" component={List} />
+    </Router>
   )
-  function handleName() {
-    let newName = "tuanjie" + (count + 1).toString()
-    setCount(count + 1)
-    setName(newName)
-  }
-  function handleAge() {
-    setAge(age + 1)
-  }
 }
 
 export default App;
