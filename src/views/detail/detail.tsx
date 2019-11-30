@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Split from "../../component/split/split"
 import "./detail.css"
-import { Radio, Input } from 'antd';
+import { Radio, Input, Button } from 'antd';
 
 const { TextArea } = Input;
 
@@ -39,7 +39,10 @@ function Detail() {
                 <div className="detail-footer">
                     <div className="detail-suggestion">
                         <p><span style={{ color: "red" }}>意见和建议</span>(500字以内,选填):</p>
-                        <TextArea rows={6} />
+                    </div>
+                    <TextArea rows={6} />
+                    <div className="save">
+                        <Button type="primary">暂存此页</Button>
                     </div>
                 </div>
             </div>

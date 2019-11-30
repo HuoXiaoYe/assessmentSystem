@@ -43,11 +43,23 @@
     font-size: .44rem;
 }
 
-/* .detail-container .main .item  */
 .detail-container .main .item .choice .ant-radio-wrapper{
-    /* background-color: red; */
     width: 1.4rem;
-    /* margin-bottom: .25rem; */
-    /* height: ; */
-    
 }
+.detail-container .detail-footer {
+    padding: .1rem .2rem;
+}
+
+.detail-container .detail-footer .detail-suggestion{
+    margin-bottom: .1rem;
+}
+
+.detail-container .detail-footer .save{
+    margin-top: .2rem;
+    height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
