@@ -1,0 +1,12 @@
+.list-container .list-footer{
+    padding-top: .4rem;
+    height: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.list-container .list-footer p{
+    margin-top: .2rem;
+    font-size: .24rem;
+}

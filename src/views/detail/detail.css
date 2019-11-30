@@ -1,0 +1,53 @@
+.detail-container{
+    padding: 0 .2rem;
+}
+
+.detail-container .detail-header{
+    height: 1rem;
+    line-height: 1rem;
+    font-size: .32rem;
+    border-bottom: 1px solid #ccc;
+}
+
+/* .detail-container .main */
+
+.detail-container .main .item{
+    padding: .26rem 0;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+.detail-container .main .item:last-child{
+    border-bottom:none;
+}
+
+.detail-container .main .item .leading{
+    float: left;
+    width: 1.4rem;
+    flex: 0 0 1.4rem;
+    height: 1.4rem;
+    text-align: center;
+    line-height: 1.4rem;
+    background-color: rgba(229, 28, 35, .55);
+    border-radius: 50%;
+    font-size: .56rem;
+    color: #fff;
+    margin-right: .6rem;
+}
+
+.detail-container .main .item:last-child .leading{
+    box-sizing: border-box;
+    padding: .2rem;
+    line-height: .5rem;
+    font-size: .44rem;
+}
+
+/* .detail-container .main .item  */
+.detail-container .main .item .choice .ant-radio-wrapper{
+    /* background-color: red; */
+    width: 1.4rem;
+    /* margin-bottom: .25rem; */
+    /* height: ; */
+    
+}
