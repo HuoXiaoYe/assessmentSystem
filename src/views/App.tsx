@@ -3,20 +3,28 @@ import React, { useState, useEffect } from 'react';
 
 import List from "./list"
 
-function App() {
-  const [info, setCount] = useState({
-    name: "tuanjie",
-    age: 20
-  })
+function App(props: any) {
   useEffect(() => {
-    console.log("xixixi")
-  }, [info])
+    console.log(123)
+  }, [props.userID, props.departmentID])
+
+  const [name, setName] = useState("tuanjie")
+  const [age, setAge] = useState(20)
+  const [count, setCount] = useState(0)
+
+
   return (
     <div>
-      <div onClick={() => { setCount({ age: 30, name: "fdas" }) }}>你点击了{info.age}次===={info.name}</div>
-      <List />
     </div>
   )
+  function handleName() {
+    let newName = "tuanjie" + (count + 1).toString()
+    setCount(count + 1)
+    setName(newName)
+  }
+  function handleAge() {
+    setAge(age + 1)
+  }
 }
 
 export default App;
