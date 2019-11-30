@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 
 import Split from "../../component/split/split"
 import "./detail.css"
-import { Radio } from 'antd';
+import { Radio, Input } from 'antd';
+
+const { TextArea } = Input;
 
 function Detail() {
     const [value, setValue] = useState(1)
@@ -25,8 +27,8 @@ function Detail() {
                                             <Radio value={1}>优秀</Radio>
                                             <Radio value={2}>合格</Radio>
                                             <Radio value={3}>基本合格</Radio>
-                                            <Radio style={{marginTop:".3rem"}} value={4}>不合格</Radio>
-                                            <Radio style={{marginTop:".3rem"}} value={5}>不了解</Radio>
+                                            <Radio style={{ marginTop: ".3rem" }} value={4}>不合格</Radio>
+                                            <Radio style={{ marginTop: ".3rem" }} value={5}>不了解</Radio>
                                         </Radio.Group>
                                     </div>
                                 </div>
@@ -34,10 +36,16 @@ function Detail() {
                         })
                     }
                 </div>
+                <div className="detail-footer">
+                    <div className="detail-suggestion">
+                        <p><span style={{ color: "red" }}>意见和建议</span>(500字以内,选填):</p>
+                        <TextArea rows={6} />
+                    </div>
+                </div>
             </div>
         </div>
     )
-    function onChange(e:any) {
+    function onChange(e: any) {
         setValue(e.target.value)
     }
 }
