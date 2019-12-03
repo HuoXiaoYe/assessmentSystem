@@ -16,7 +16,7 @@
     border-bottom: 1px solid #ccc;
     display: flex;
     /* justify-content: center; */
-    align-items: center;
+    /* align-items: center; */
 }
 .detail-container .main .item:last-child{
     border-bottom:none;
@@ -60,6 +60,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.ant-radio-inner::after {
+    background-color: red;
+    border-radius: red;
+}
+
+.ant-radio-checked .ant-radio-inner {
+    border-color: red;
+}
+.ant-radio-checked .ant-radio-inner {
+    border-radius: red;
 }
 
 
