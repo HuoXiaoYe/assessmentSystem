@@ -1,11 +1,19 @@
-import { axiosPost } from "../../api/baseApi"
+import { axiosPost, axiosGet } from "../../api/baseApi"
 
-import { saveUrl } from "../../config/baseUrl"
+import { saveUrl, getSaveUrl } from "../../config/baseUrl"
 
 export const handleAssessment = async (params: any) => {
-    console.log("params==", params)
-    // var result = await axiosPost(saveUrl, JSON.stringify(params))
     var result = await axiosPost(saveUrl, `r=${JSON.stringify(params)}`)
+    return result
+}
 
+interface IParams {
+    pwd: string;
+    candidate_id: number;
+}
+
+export const getAssessmentRes = async (params: IParams) => {
+    let url = getSaveUrl + `?pwd=${params.pwd}&candidate_id=${params.candidate_id}`
+    var result = await axiosGet(url)
     return result
 }

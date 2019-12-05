@@ -8,7 +8,7 @@ export async function axiosGet(api:string,params:any=null){
     return response.data;
 }
 // post
-export async function axiosPost(api:string,data:any):Promise<AxiosResponse<any>>{
+export async function axiosPost(api:string,data:any){
     let  response = await axios.post(api,data);
     return response.data;
 }

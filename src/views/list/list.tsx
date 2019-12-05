@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Icon } from 'antd';
-import { getDepartmentList } from "./list_ts"
+import { Button, Icon, message } from 'antd';
+import { getDepartmentList, saveAllAssessment } from "./list_ts"
 import { IProps, IDepartment } from "../../interface/list"
 import "./list.css"
 import Split from "../../component/split/split"
@@ -26,13 +26,21 @@ function List(props: IProps) {
       }
       <Split />
       <div className="list-footer">
-        <Button style={{ width: "2.5rem", height: "0.8rem", backgroundColor: "red" }} type="danger" size="large">提交投票</Button>
+        <Button onClick={() => { saveAll(props.match.params.pwd) }} style={{ width: "2.5rem", height: "0.8rem", backgroundColor: "red" }} type="danger" size="large">提交投票</Button>
         <p>
           <Icon style={{ color: "red" }} type="notification" />&nbsp;&nbsp;需完成所有评价才可提交投票
         </p>
       </div>
     </div>
   )
+  async function saveAll(pwd: string) {
+    let res = await saveAllAssessment(pwd)
+    if (res.value.toString() === "-1") { // 未全部提交
+      message.error(res.label);
+      return
+    }
+    // 执行跳转工作 
+  }
 }
 export default List
 

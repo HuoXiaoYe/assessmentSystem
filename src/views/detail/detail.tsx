@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Split from "../../component/split/split"
 import "./detail.css"
-import { Radio, Input, Button } from 'antd';
+import { Radio, Input, Button, message } from 'antd';
 import { IDetail, IResult, indicatorsArr } from "../../interface/detail"
-import { handleAssessment } from "./detail_ts"
+import { handleAssessment, getAssessmentRes } from "./detail_ts"
+import { async } from 'q';
+// import { string, number } from 'prop-types';
 
 const { TextArea } = Input;
 
@@ -22,6 +24,29 @@ function Detail(props: IDetail) {
         "val1-102": "",
     })
     const [keys] = useState<string[]>(Object.keys(result))
+    useEffect(() => {
+        (async () => {
+            let res = await getAssessmentRes({
+                pwd: props.match.params.pwd,
+                candidate_id: props.match.params.candidate_id,
+            })
+            res.forEach((element: any) => {
+                let key = ""
+                if (element["val3"] < 10) {
+                    key = "val4-" + element["val3"]
+                    var val = element["val4"]
+                } else {
+                    key = "val1-" + element["val3"]
+                    var val = element["val1"]
+                }
+                // let val = element["val4"]
+                result[key] = val;
+                let temp = { ...result }
+                setResult(temp)
+            });
+        })()
+        console.log(result)
+    }, [])
     return (
         <div>
             <Split />
@@ -47,7 +72,7 @@ function Detail(props: IDetail) {
                                             <Radio style={{ marginTop: ".3rem" }} value={5}>不了解</Radio>
                                         </Radio.Group>
                                         <div style={{ display: i === (indicatorsArr.length - 1) && result["val4-6"] === 4 ? "block" : "none", marginTop: ".2rem" }} className="down-standard">
-                                            <TextArea onChange={handleLowStand} placeholder="若总体评价为不合格则必填此处,500字以内" rows={6} />
+                                            <TextArea value={result["val1-101"]} onChange={handleLowStand} placeholder="若总体评价为不合格则必填此处,500字以内" rows={6} />
                                         </div>
                                     </div>
                                 </div>
@@ -59,9 +84,9 @@ function Detail(props: IDetail) {
 
                 <div className="detail-footer">
                     <div className="detail-suggestion">
-                        <p><span style={{ color: "red" }}>意见和建议</span>(500字以内,选填):</p>
+                        <p><span style={{ color: "red" }}>意见和建议</span>(500字以内,<span style={{ color: "red" }}>选填</span>):</p>
                     </div>
-                    <TextArea rows={6} onChange={handleSuggestion} />
+                    <TextArea value={result["val1-102"]} rows={6} onChange={handleSuggestion} />
                     <div className="save">
                         <Button type="primary" onClick={saveData}>暂存此页</Button>
                     </div>
@@ -86,6 +111,14 @@ function Detail(props: IDetail) {
     }
 
     async function saveData() {
+        if (Object.values(result).indexOf(0) !== -1) {
+            message.error("您有选项尚未选中");
+            return
+        }
+        if (result["val4-6"] === 4 && result["val1-101"].trim() === "") {
+            message.error('请填写您总体评价选为不合格的原因');
+            return
+        }
         let data = {
             pwd: props.match.params.pwd,
             candidate_id: props.match.params.candidate_id,
@@ -93,9 +126,13 @@ function Detail(props: IDetail) {
                 ...result
             }
         }
-        console.log("data=======",data)
+        // console.log("data=======", data)
         let rs = await handleAssessment(data)
-        console.log(rs)
+        // console.log(JSON.parse(rs)) // {label: "暂存成功", value: "1"}
+        if (rs.value.toString() === "1") {
+            props.history.push(`/${props.match.params.pwd}`)
+            message.success("暂存成功");
+        }
     }
 }
 
