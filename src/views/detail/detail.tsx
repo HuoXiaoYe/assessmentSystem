@@ -5,7 +5,6 @@ import "./detail.css"
 import { Radio, Input, Button, message } from 'antd';
 import { IDetail, IResult, indicatorsArr } from "../../interface/detail"
 import { handleAssessment, getAssessmentRes } from "./detail_ts"
-import { async } from 'q';
 
 import { storeContext } from "../../store"
 
@@ -14,7 +13,7 @@ const { TextArea } = Input;
 
 
 function Detail(props: IDetail) {
-    const { store } = useContext(storeContext)
+    const { store } = useContext(storeContext) as any
     const [result, setResult] = useState<IResult>({
         "val4-1": 0,
         "val4-2": 0,
@@ -41,7 +40,6 @@ function Detail(props: IDetail) {
                     key = "val1-" + element["val3"]
                     var val = element["val1"]
                 }
-                // let val = element["val4"]
                 result[key] = val;
                 let temp = { ...result }
                 setResult(temp)
@@ -52,7 +50,7 @@ function Detail(props: IDetail) {
     return (
         <div>
             <Split />
-            {store}
+            {store.candidate_id}
             <div className="detail-container">
 
                 <div className="detail-header">
