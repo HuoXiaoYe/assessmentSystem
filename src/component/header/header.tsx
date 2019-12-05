@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./header.css"
 
+import { getCandidateCount } from "./header_ts"
 
 
-function Header(){
+function Header() {
+    const [count, setCount] = useState(0)
+    useEffect(() => {
+        (async () => {
+            let res = await getCandidateCount()
+            setCount(res.count)
+        })()
+    })
     return (
         <div className="header">
             <div className="content">
                 <div className="logo">
-                    <img src="/images/logo.png" width="65" height="65" alt="logo"/>
+                    <img src="/images/logo.png" width="65" height="65" alt="logo" />
                 </div>
                 <div className="desc">
                     <p>北京交通大学威海校区</p>
@@ -16,7 +24,7 @@ function Header(){
                 </div>
             </div>
             <div className="footer">
-                待考核<span>18</span>人
+                待考核<span>{count}</span>人
             </div>
         </div>
     )

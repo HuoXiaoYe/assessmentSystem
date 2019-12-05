@@ -16,3 +16,7 @@ export const getSaveUrl = baseUrl + "/front/voteResult/toSave";
 // // http://10.135.0.216:7080/e01/front/voter/update?pwd=001VDVBF
 export const saveAllUrl = baseUrl + "/front/voter/update";
 
+
+// 所有候选人个数
+export const candidateCountUrl = baseUrl + "/front/voter/getCount"
+

@@ -1,4 +1,5 @@
-import React, { useContext, useReducer } from "react"
+import React, { createContext, useReducer } from "react"
+import { OmitProps } from "antd/lib/transfer/renderListBody";
 
 interface IState {
     pwd: string;
@@ -29,7 +30,13 @@ let initData: IState = {
     candidate_id: 0,
 }
 
-export const store = () => {
+export const storeContext = createContext({ store: "123" });
+
+export const Store = (props: any) => {
     let [store, dispatch] = useReducer(reducer, initData)
-    return
+    return (
+        <storeContext.Provider value={{ store: "123" }}>
+            {props.children}
+        </storeContext.Provider>
+    )
 }

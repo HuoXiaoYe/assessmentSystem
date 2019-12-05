@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import Split from "../../component/split/split"
 import "./detail.css"
@@ -6,13 +6,15 @@ import { Radio, Input, Button, message } from 'antd';
 import { IDetail, IResult, indicatorsArr } from "../../interface/detail"
 import { handleAssessment, getAssessmentRes } from "./detail_ts"
 import { async } from 'q';
-// import { string, number } from 'prop-types';
+
+import { storeContext } from "../../store"
 
 const { TextArea } = Input;
 
 
 
 function Detail(props: IDetail) {
+    const { store } = useContext(storeContext)
     const [result, setResult] = useState<IResult>({
         "val4-1": 0,
         "val4-2": 0,
@@ -50,6 +52,7 @@ function Detail(props: IDetail) {
     return (
         <div>
             <Split />
+            {store}
             <div className="detail-container">
 
                 <div className="detail-header">
