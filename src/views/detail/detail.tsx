@@ -13,7 +13,7 @@ const { TextArea } = Input;
 
 
 function Detail(props: IDetail) {
-    const { store } = useContext(storeContext) as any
+    const { store } = useContext(storeContext)
     const [result, setResult] = useState<IResult>({
         "val4-1": 0,
         "val4-2": 0,

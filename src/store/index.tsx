@@ -32,7 +32,7 @@ const reducer = (state: IState, action: IAction) => {
             return state
     }
 }
-export const storeContext = createContext<IValue>({ store: initData, dispatch() { } });
+export const storeContext = createContext<IValue>(null!);
 
 export const Store = (props: any) => {
     let [store, dispatch] = useReducer(reducer, initData)
