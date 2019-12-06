@@ -40,6 +40,8 @@ function List(props: IProps) {
       return
     }
     // 执行跳转工作 
+    message.success("已完成全部评测")
+    props.history.push("/success")
   }
 }
 export default List

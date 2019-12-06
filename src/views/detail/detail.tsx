@@ -101,6 +101,7 @@ function Detail(props: IDetail) {
         setResult(temp)
     }
     function handleLowStand(e: any) {
+        if(e.target.value.length>=500) return message.error("字数要求在500字以内")
         result["val1-101"] = e.target.value
         let temp = { ...result }
         setResult(temp)
@@ -127,9 +128,7 @@ function Detail(props: IDetail) {
                 ...result
             }
         }
-        // console.log("data=======", data)
         let rs = await handleAssessment(data)
-        // console.log(JSON.parse(rs)) // {label: "暂存成功", value: "1"}
         if (rs.value.toString() === "1") {
             props.history.push(`/${props.match.params.pwd}`)
             message.success("暂存成功");

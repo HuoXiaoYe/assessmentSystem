@@ -1,4 +1,4 @@
-const baseUrl = "http://10.135.0.216:7080/e01";
+const baseUrl = "http://officalwechat.wh.bjtu.edu.cn:7080/e01";
 
 
 //http://10.135.0.216:7080/e01/front/department/list?pwd=001VDVBF

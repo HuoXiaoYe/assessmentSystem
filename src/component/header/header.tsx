@@ -4,11 +4,9 @@ import "./header.css"
 import { getCandidateCount } from "./header_ts"
 
 
-import { storeContext } from "../../store"
 
 
 function Header() {
-    const { store } = useContext(storeContext)
     const [count, setCount] = useState(0)
     useEffect(() => {
         (async () => {
@@ -23,7 +21,6 @@ function Header() {
                     <img src="/images/logo.png" width="65" height="65" alt="logo" />
                 </div>
                 <div className="desc">
-                    <p>{store.candidate_id}</p>
                     <p>北京交通大学威海校区</p>
                     <p>部门负责人年度考核民主评测</p>
                 </div>
